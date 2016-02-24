@@ -14,7 +14,7 @@ model {
     }
 
     android.ndk {
-        moduleName = "hello-jni"
+        moduleName = "string-handle"
         ldLibs.addAll(["log"])
     }
 

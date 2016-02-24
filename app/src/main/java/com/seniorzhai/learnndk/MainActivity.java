@@ -3,6 +3,7 @@ package com.seniorzhai.learnndk;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,14 +14,22 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dataType((short) 1, 2, 3, 4f, 5.0, 'c', "String", true, (byte) 0, "S", new int[]{1, 2, 3});
+                ((TextView) v).setText(handleString("Button按钮"));
+            }
+        });
+        findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logStringCritical(" I have a dream that one day this nation will rise up, live up to the true meaning of its creed: “We hold these truths to be self-evident; that all men are created equal.”");
             }
         });
     }
 
-    public native void dataType(short s, int i, long l, float f, double d, char c, String str, boolean bool, byte b, Object obj, int[] arr);
+    public native String handleString(String str);
+
+    public native void logStringCritical(String str);
 
     static {
-        System.loadLibrary("hello-jni");
+        System.loadLibrary("string-handle");
     }
 }
