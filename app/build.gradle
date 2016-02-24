@@ -15,6 +15,7 @@ model {
 
     android.ndk {
         moduleName = "hello-jni"
+        ldLibs.addAll(["log"])
     }
 
     android.productFlavors {

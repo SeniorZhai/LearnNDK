@@ -1,41 +1,29 @@
 #include <jni.h>
 #include <string.h>
+#include <android/log.h>
 
-jstring
-Java_com_seniorzhai_learnndk_MainActivity_stringFromJNI( JNIEnv* env,
-                                                  jobject thiz )
-{
-#if defined(__arm__)
-  #if defined(__ARM_ARCH_7A__)
-    #if defined(__ARM_NEON__)
-      #if defined(__ARM_PCS_VFP)
-        #define ABI "armeabi-v7a/NEON (hard-float)"
-      #else
-        #define ABI "armeabi-v7a/NEON"
-      #endif
-    #else
-      #if defined(__ARM_PCS_VFP)
-        #define ABI "armeabi-v7a (hard-float)"
-      #else
-        #define ABI "armeabi-v7a"
-      #endif
-    #endif
-  #else
-   #define ABI "armeabi"
-  #endif
-#elif defined(__i386__)
-   #define ABI "x86"
-#elif defined(__x86_64__)
-   #define ABI "x86_64"
-#elif defined(__mips64)  /* mips64el-* toolchain defines __mips__ too */
-   #define ABI "mips64"
-#elif defined(__mips__)
-   #define ABI "mips"
-#elif defined(__aarch64__)
-   #define ABI "arm64-v8a"
-#else
-   #define ABI "unknown"
-#endif
+#define LOGV(...) ((void)__android_log_print(ANDROID_LOG_VERBOSE, "jni_log", __VA_ARGS__))
 
-    return (*env)->NewStringUTF(env, "Hello from JNI !  Compiled with ABI " ABI ".");
+JNIEXPORT void JNICALL
+Java_com_seniorzhai_learnndk_MainActivity_dataType(JNIEnv *env, jobject instance, jshort s, jint i,
+                                                   jlong l, jfloat f, jdouble d, jchar c,
+                                                   jstring str_, jboolean bool, jbyte b,
+                                                   jobject obj, jintArray arr_) {
+    const char *str = (*env)->GetStringUTFChars(env, str_, 0);
+    jint *arr = (*env)->GetIntArrayElements(env, arr_, NULL);
+
+    LOGV("------------");
+    LOGV("short=%hd", s);
+    LOGV("int=%d", i);
+    LOGV("long=%ld", l);
+    LOGV("float=%f", f);
+    LOGV("double=%lf", d);
+    LOGV("boolean=%s", bool ? "true" : "false");
+    LOGV("char=%c", c);
+    LOGV("byte=%d", b);
+    LOGV("String=%s", str);
+    LOGV("------------");
+
+    (*env)->ReleaseStringUTFChars(env, str_, str);
+    (*env)->ReleaseIntArrayElements(env, arr_, arr, 0);
 }
