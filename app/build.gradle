@@ -14,7 +14,7 @@ model {
     }
 
     android.ndk {
-        moduleName = "string-handle"
+        moduleName = "array"
         ldLibs.addAll(["log"])
     }
 

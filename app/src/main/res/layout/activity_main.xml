@@ -12,16 +12,31 @@
     tools:context="com.seniorzhai.learnndk.MainActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/sum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="1+2+3+4+5+6+7+8+9"
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/max"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="StringCritical"
+        android:text="1+2+3+4+5+6+7+8+9"
         android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1+2+3+4+5+6+7+8+9"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/multiply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1*2*3*4*5*6*7*8*9"
+        android:textAllCaps="false" />
+
 </LinearLayout>
