@@ -2,6 +2,7 @@ package com.seniorzhai.learnndk;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,23 +14,26 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.callS).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callJavaStaticMethod();
+                Student student = new Student();
+                student.name = "name";
+                instanceField(student);
+                Log.d("sdk_log", student.name);
             }
         });
         findViewById(R.id.callI).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callJavaInstanceMethod();
+                staticField();
+                Log.d("sdk_log", Student.num + "");
             }
         });
     }
 
-    public static native void callJavaStaticMethod();
+    public static native void instanceField(Student student);
 
-    public static native void callJavaInstanceMethod();
-
+    public static native void staticField();
 
     static {
-        System.loadLibrary("method");
+        System.loadLibrary("field");
     }
 }

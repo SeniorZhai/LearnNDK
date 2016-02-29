@@ -15,13 +15,13 @@
         android:id="@+id/callS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="call static"
+        android:text="static field"
         android:textAllCaps="false" />
     <Button
         android:id="@+id/callI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="call instance"
+        android:text="instance field"
         android:textAllCaps="false" />
 
 </LinearLayout>

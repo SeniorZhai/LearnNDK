@@ -14,7 +14,7 @@ model {
     }
 
     android.ndk {
-        moduleName = "method"
+        moduleName = "field"
         ldLibs.addAll(["log"])
     }
 
