@@ -12,16 +12,10 @@
     tools:context="com.seniorzhai.learnndk.MainActivity">
 
     <Button
-        android:id="@+id/callS"
+        android:id="@+id/call"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="static field"
-        android:textAllCaps="false" />
-    <Button
-        android:id="@+id/callI"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="instance field"
+        android:text="call"
         android:textAllCaps="false" />
 
 </LinearLayout>

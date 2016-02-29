@@ -2,7 +2,6 @@ package com.seniorzhai.learnndk;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
@@ -11,29 +10,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findViewById(R.id.callS).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.call).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Student student = new Student();
-                student.name = "name";
-                instanceField(student);
-                Log.d("sdk_log", student.name);
-            }
-        });
-        findViewById(R.id.callI).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                staticField();
-                Log.d("sdk_log", Student.num + "");
+                call();
             }
         });
     }
 
-    public static native void instanceField(Student student);
-
-    public static native void staticField();
+    public static native void call();
 
     static {
-        System.loadLibrary("field");
+        System.loadLibrary("supclass");
     }
 }

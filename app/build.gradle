@@ -14,7 +14,7 @@ model {
     }
 
     android.ndk {
-        moduleName = "field"
+        moduleName = "supclass"
         ldLibs.addAll(["log"])
     }
 
