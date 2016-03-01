@@ -14,8 +14,8 @@ model {
     }
 
     android.ndk {
-        moduleName = "supclass"
-        ldLibs.addAll(["log"])
+        moduleName = "plasma"
+        ldLibs.addAll(["log","m","jnigraphics"])
     }
 
     android.productFlavors {
