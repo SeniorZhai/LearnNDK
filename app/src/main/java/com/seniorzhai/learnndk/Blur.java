@@ -1,6 +1,11 @@
 package com.seniorzhai.learnndk;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.support.v8.renderscript.Allocation;
+import android.support.v8.renderscript.Element;
+import android.support.v8.renderscript.RenderScript;
+import android.support.v8.renderscript.ScriptIntrinsicBlur;
 
 /**
  * Created by zhai on 16/3/1.
@@ -14,6 +19,26 @@ public final class Blur extends BlurNative {
             rBitmap = bitmap.copy(bitmap.getConfig(), true);
         }
         return (rBitmap);
+    }
+
+    public static Bitmap blurRenderScript(Context context, Bitmap original, int radius, boolean canReuseInBitmap) {
+        if (radius < 1) {
+            return null;
+        }
+        Bitmap bitmap = buildBitmap(original, canReuseInBitmap);
+        if (radius == 1) {
+            return bitmap;
+        }
+
+        RenderScript rs = RenderScript.create(context);
+        ScriptIntrinsicBlur theIntrinsic = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
+        Allocation tmpIn = Allocation.createFromBitmap(rs, bitmap);
+        Allocation tmpOut = Allocation.createFromBitmap(rs, bitmap);
+        theIntrinsic.setRadius(radius);
+        theIntrinsic.setInput(tmpIn);
+        theIntrinsic.forEach(tmpOut);
+        tmpOut.copyTo(bitmap);
+        return bitmap;
     }
 
     public static Bitmap blurNatively(Bitmap original, int radius, boolean canReuseInBitmap) {

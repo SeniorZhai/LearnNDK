@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,16 +19,46 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal"
-        android:weightSum="4">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/checkbox_blur_isCompress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:text="Is Compress"
+            android:textSize="14sp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="run"
+            android:text="run"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:id="@+id/text_blur_time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dip"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Blur Time: 0 0 0 0"
+            android:textSize="14sp" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:id="@+id/blur_java"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
             android:padding="5dp">
 
             <ImageView
@@ -37,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/icon" />
+                android:src="@drawable/background" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -47,19 +76,20 @@
                 android:textColor="#FFFF" />
         </RelativeLayout>
 
+
         <RelativeLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:padding="5dp">
+            android:layout_above="@id/blur_java"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/blur_java">
 
             <ImageView
                 android:id="@+id/image_blur_java"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/icon" />
+                android:src="@drawable/background" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -70,40 +100,40 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:padding="5dp">
+            android:layout_above="@id/blur_java"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/blur_java">
 
             <ImageView
                 android:id="@+id/image_blur_jni_pixels"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/icon" />
+                android:src="@drawable/background" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Jni Pixels"
+                android:text="Pixels Blur"
                 android:textColor="#FFFF" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:padding="5dp">
+            android:layout_below="@id/blur_java"
+            android:layout_toLeftOf="@id/blur_java"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/image_blur_jni_bitmap"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/icon" />
+                android:src="@drawable/background" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -112,102 +142,27 @@
                 android:text="Jni Bitmap"
                 android:textColor="#FFFF" />
         </RelativeLayout>
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <CheckBox
-            android:id="@+id/checkbox_blur_isCompress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dip" />
-
-
-        <TextView
-            android:id="@+id/text_blur_isCompress"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="Is Compress"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/text_blur_time"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dip"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="Blur Time: 0 0 0"
-            android:textSize="14sp" />
-    </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <FrameLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipChildren="false">
+            android:layout_below="@id/blur_java"
+            android:layout_toRightOf="@id/blur_java">
 
-            <RelativeLayout
-                android:id="@+id/blurred_view"
-                android:layout_width="600dp"
-                android:layout_height="600dp"
-                android:layout_gravity="center"
-                android:background="#FF02ADEA"
-                android:clipChildren="false">
+            <ImageView
+                android:id="@+id/image_blur_rs_bitmap"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/background" />
 
-                <ImageView
-                    android:id="@+id/image0"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:layout_centerInParent="true"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/background" />
-
-                <ImageView
-                    android:id="@+id/image1"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:layout_above="@id/image0"
-                    android:layout_alignLeft="@id/image0"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/background" />
-
-                <ImageView
-                    android:id="@+id/image2"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:layout_alignLeft="@id/image0"
-                    android:layout_below="@id/image0"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/background" />
-
-            </RelativeLayout>
-        </FrameLayout>
-
-        <!-- Here, we customize the blurring view with values different from the defaults. -->
-        <com.seniorzhai.learnndk.BlurringView
-            android:id="@+id/blurring_view"
-            android:layout_width="360dp"
-            android:layout_height="360dp"
-            android:layout_gravity="center"
-            app:blurRadius="8"
-            app:downsampleFactor="6"
-            app:overlayColor="@android:color/transparent" />
-
-        <Button
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:onClick="shift"
-            android:text="Shift" />
-
-    </FrameLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="RS Bitmap"
+                android:textColor="#FFFF" />
+        </RelativeLayout>
+    </RelativeLayout>
 
 </LinearLayout>
